@@ -13,7 +13,7 @@ class JobResource(BaseResource):
 
         # TODO -- Replace with dependency injection.
         #
-        self.data_service = ServiceFactory.get_service("JobResource")
+        self.data_service = ServiceFactory.get_service("JobResourceDataService")
         self.database = "jobs"
         self.collection = "JobInfo"
         self.key_field="job_id"
