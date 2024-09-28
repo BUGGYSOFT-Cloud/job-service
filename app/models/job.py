@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Optional
 
 from pydantic import BaseModel
@@ -9,7 +10,7 @@ class JobInfo(BaseModel):
     job_id: Optional[int] = None
     job_name: Optional[str] = None
     job_company: Optional[str] = None
-    job_created_at: Optional[str] = None
+    job_created_at: Optional[datetime] = None
     job_url: Optional[str] = None
 
     class Config:
