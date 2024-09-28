@@ -1,3 +1,3 @@
-# BuggySoft: Job Service
+# W4153-Job-Service
 
-COMS W4153 Cloud Computing's job listing and scraping service.
+Simple microservice application for the Job service.
