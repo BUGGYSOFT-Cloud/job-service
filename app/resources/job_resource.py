@@ -29,4 +29,13 @@ class JobResource(BaseResource):
         result = JobInfo(**result)
         return result
 
+    def get_all_by_field(self, field: str, value: Any) -> [JobInfo]:
+        d_service = self.data_service
+
+        result = d_service.get_all_data_object(
+            self.database, self.collection, key_field=field, key_value=value
+        )
+        print(result)
+        result = [JobInfo(**item) for item in result]
+        return result
 
