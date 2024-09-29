@@ -30,7 +30,7 @@ class JobResource(BaseResource):
         if result is None:
             raise HTTPException(status_code=404, detail="Item not found!")
         else:
-            print("DEBUG:\n\t", result)
+            print("DEBUG:\t", result)
 
         result = JobInfo(**result)
         return result
@@ -45,7 +45,7 @@ class JobResource(BaseResource):
         if result is None or len(result) == 0:
             raise HTTPException(status_code=404, detail="Item not found!")
         else:
-            print("DEBUG:\n\t", result)
+            print("DEBUG:\t", result)
 
         result = [JobInfo(**item) for item in result]
         return result
