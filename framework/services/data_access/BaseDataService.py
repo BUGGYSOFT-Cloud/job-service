@@ -44,3 +44,20 @@ class DataDataService(ABC):
         """
         raise NotImplementedError('Abstract method get_data_object()')
 
+    @abstractmethod
+    def get_all_data_object(self,
+                        database_name: str,
+                        collection_name: str,
+                        key_field: str,
+                        key_value: str):
+        """
+        Gets all data object from a table in a database. Collection is an abstraction of a
+        table in the relational model, collection in MongoDB, etc.
+
+        :param database_name: Name of the database or similar abstraction.
+        :param collection_name: The name of the collection, table, etc. in the database.
+        :param key_field: A single column, field, ... that is a unique key/identifier.
+        :param key_value: The value for the column, field, ... ...
+        :return: The all objects identified by the unique field.
+        """
+        raise NotImplementedError('Abstract method get_data_object()')
