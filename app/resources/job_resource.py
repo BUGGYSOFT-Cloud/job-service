@@ -1,4 +1,5 @@
 from typing import Any
+from fastapi import HTTPException
 
 from framework.resources.base_resource import BaseResource
 
@@ -25,7 +26,12 @@ class JobResource(BaseResource):
         result = d_service.get_data_object(
             self.database, self.collection, key_field=self.key_field, key_value=key
         )
-        print(result)
+
+        if result is None:
+            raise HTTPException(status_code=404, detail="Item not found!")
+        else:
+            print("DEBUG:\n\t", result)
+
         result = JobInfo(**result)
         return result
 
@@ -35,7 +41,12 @@ class JobResource(BaseResource):
         result = d_service.get_all_data_object(
             self.database, self.collection, key_field=field, key_value=value
         )
-        print(result)
+
+        if result is None:
+            raise HTTPException(status_code=404, detail="Item not found!")
+        else:
+            print("DEBUG:\n\t", result)
+
         result = [JobInfo(**item) for item in result]
         return result
 
