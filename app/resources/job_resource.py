@@ -42,7 +42,7 @@ class JobResource(BaseResource):
             self.database, self.collection, key_field=field, key_value=value
         )
 
-        if result is None:
+        if result is None or len(result) == 0:
             raise HTTPException(status_code=404, detail="Item not found!")
         else:
             print("DEBUG:\n\t", result)
