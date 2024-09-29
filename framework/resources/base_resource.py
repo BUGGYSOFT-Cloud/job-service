@@ -11,4 +11,5 @@ class BaseResource(ABC):
     def get_by_key(self, key: int) -> Any:
         raise NotImplementedError()
 
-
+    def get_all_by_field(self, field: str, value: Any) -> Any:
+        raise NotImplementedError()

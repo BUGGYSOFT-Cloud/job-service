@@ -48,8 +48,30 @@ class MySQLRDBDataService(DataDataService):
 
         return result
 
+    def get_all_data_object(self,
+                        database_name: str,
+                        collection_name: str,
+                        key_field: str,
+                        key_value: str):
+        """
+        See base class for comments.
+        """
 
+        connection = None
+        result = None
 
+        try:
+            sql_statement = f"SELECT * FROM {database_name}.{collection_name} " + \
+                        f"where {key_field}=%s"
+            connection = self._get_connection()
+            cursor = connection.cursor()
+            cursor.execute(sql_statement, [key_value])
+            result = cursor.fetchall()
+        except Exception as e:
+            if connection:
+                connection.close()
+
+        return result
 
 
 
