@@ -61,3 +61,19 @@ class DataDataService(ABC):
         :return: The all objects identified by the unique field.
         """
         raise NotImplementedError('Abstract method get_data_object()')
+
+    @abstractmethod
+    def insert(self,
+                database_name: str,
+                collection_name: str,
+                data: dict):
+        """
+        Inserts a data object into a table in a database. Collection is an abstraction of a
+        table in the relational model, collection in MongoDB, etc.
+
+        :param database_name: Name of the database or similar abstraction.
+        :param collection_name: The name of the collection, table, etc. in the database.
+        :param data: The data object to insert.
+        :return: The unique identifier of the inserted object.
+        """
+        raise NotImplementedError('Abstract method insert()')
