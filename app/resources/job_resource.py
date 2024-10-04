@@ -50,3 +50,20 @@ class JobResource(BaseResource):
         result = [JobInfo(**item) for item in result]
         return result
 
+    def insert(self, data: JobInfo) -> int:
+        d_service = self.data_service
+
+        insert_data = dict()
+        insert_data["job_name"] = data.job_name
+        insert_data["job_company"] = data.job_company
+        insert_data["job_created_at"] = data.job_created_at
+        insert_data["job_url"] = data.job_url
+
+        result = d_service.insert(self.database, self.collection, insert_data)
+
+        if result is None or result <= 0:
+            raise HTTPException(status_code=400, detail="Item not created!")
+        else:
+            print("DEBUG:\tcreate new job item # {}".format(result))
+
+        return result
