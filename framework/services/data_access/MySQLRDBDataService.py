@@ -96,5 +96,3 @@ class MySQLRDBDataService(DataDataService):
                 connection.close()
 
         return result
-
-
