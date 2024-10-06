@@ -47,6 +47,22 @@ Simple microservice application for the Job service.
 ]
 ```
 
+### POST `/create_job`
+- Creates a new job with the given job information.
+- Request Body: The details of the job to be created. 
+  - Special Note: `job_id` is an integer type but is not used, it will be generated automatically.
+- Example Request:
+```json
+{
+  "job_id": 0,
+  "job_name": "Full-stack Developer",
+  "job_company": "BuggySoft",
+  "job_created_at": "2024-10-04",
+  "job_url": "https://127.0.0.1/jobs/full-stack-developer?referral=myself"
+}
+```
+- Return Value: The job id of the created job if successful. Otherwise, returns HTTP code 400.
+
 ## Deployment Instructions
 
 Make sure you have Python 3 and `pip` installed on your machine and clone the repository.

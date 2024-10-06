@@ -17,6 +17,12 @@ async def get_job(job_id: int) -> JobInfo:
 
 @router.get("/jobs_of_company/{company_name}", response_model=list[JobInfo], tags=["users"])
 async def get_job_by_company(company_name: str) -> list[JobInfo]:
-        res = ServiceFactory.get_service("JobResource")
-        result = res.get_all_by_field("job_company", company_name)
-        return result
+    res = ServiceFactory.get_service("JobResource")
+    result = res.get_all_by_field("job_company", company_name)
+    return result
+
+@router.post("/create_job", response_model=int, tags=["users"])
+async def create_job(job: JobInfo) -> JobInfo:
+    res = ServiceFactory.get_service("JobResource")
+    result = res.insert(job)
+    return result

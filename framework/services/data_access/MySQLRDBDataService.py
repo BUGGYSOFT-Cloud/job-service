@@ -73,5 +73,26 @@ class MySQLRDBDataService(DataDataService):
 
         return result
 
+    def insert(self,
+                database_name: str,
+                collection_name: str,
+                data: dict):
+        """
+        See base class for comments.
+        """
 
+        connection = None
+        result = None
 
+        try:
+            sql_statement = f"INSERT INTO {database_name}.{collection_name} " + \
+                        f"({', '.join(data.keys())}) VALUES ({', '.join(['%s' for _ in data.keys()])})"
+            connection = self._get_connection()
+            cursor = connection.cursor()
+            cursor.execute(sql_statement, list(data.values()))
+            result = cursor.lastrowid
+        except Exception as e:
+            if connection:
+                connection.close()
+
+        return result
